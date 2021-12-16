@@ -2,30 +2,20 @@ package com.desuzed.newsapp.data.repository
 
 import com.desuzed.everyweather.data.network.retrofit.NetworkResponse
 import com.desuzed.newsapp.data.NewsService
-import com.desuzed.newsapp.data.retrofit.dto.mappers.NewsMapper
-import com.desuzed.newsapp.model.Error
-import com.desuzed.newsapp.model.News
+import com.desuzed.newsapp.data.retrofit.dto.ErrorDto
+import com.desuzed.newsapp.data.retrofit.dto.NewsDto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
-class RemoteDataSourceImpl() : RemoteDataSource {
-    override suspend fun getNews(query: String): NetworkResponse<News, Error> =
+class RemoteDataSourceImpl : RemoteDataSource {
+    override suspend fun fetchNews(query: String): NetworkResponse<NewsDto, ErrorDto> =
         withContext(Dispatchers.IO) {
-            when (val response = NewsService
+            NewsService
                 .getInstance()
-                .fetchNews(query)) {
-                is NetworkResponse.Success -> {
-                    NetworkResponse.Success(NewsMapper().mapFromEntity(response.body))
-                }
-                //TODO Обработать все случаи
-                else -> {
-                    NetworkResponse.UnknownError(Exception())
-                }
-            }
+                .fetchNews(query)
         }
-
 }
 
-interface RemoteDataSource : DataSource {
+interface RemoteDataSource {
+    suspend fun fetchNews(query: String): NetworkResponse<NewsDto, ErrorDto>
 }

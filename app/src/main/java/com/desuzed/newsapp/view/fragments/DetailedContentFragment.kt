@@ -50,7 +50,6 @@ class DetailedContentFragment : Fragment() {
         binding.appBarLayout.setOnClickListener{
             val bundle = bundleOf(GalleryFragment.URL_IMAGE to article.urlToImage)
             navigate(R.id.action_detailedContentFragment_to_galleryFragment, bundle)
-            Log.i("TAG", "onViewCreated: ")
         }
     }
 

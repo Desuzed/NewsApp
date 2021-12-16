@@ -1,6 +1,7 @@
 package com.desuzed.newsapp
 
 import android.app.Application
+import com.desuzed.newsapp.data.ErrorProviderImpl
 import com.desuzed.newsapp.data.repository.LocalDataSourceImpl
 import com.desuzed.newsapp.data.repository.RemoteDataSourceImpl
 import com.desuzed.newsapp.data.repository.RepoApp
@@ -10,7 +11,8 @@ import kotlinx.coroutines.SupervisorJob
 
 
 class App : Application() {
-    private val localDataSource by lazy { LocalDataSourceImpl() }
+    private val errorProvider by lazy { ErrorProviderImpl(resources) }
+    private val localDataSource by lazy { LocalDataSourceImpl(errorProvider) }
     private val remoteDataSource by lazy { RemoteDataSourceImpl() }
     private val repositoryApp by lazy { RepoAppImpl(localDataSource, remoteDataSource) }
 

@@ -6,7 +6,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.desuzed.newsapp.App
-import com.desuzed.newsapp.R
 import com.desuzed.newsapp.databinding.ActivityMainBinding
 import com.desuzed.newsapp.model.vm.NewsViewModel
 import com.desuzed.newsapp.model.vm.ViewModelFactory
@@ -27,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         val view: View = activityBinding.root
         setContentView(view)
         //Проверка работоспособности
-        newsViewModel.postValue("london")
-        newsViewModel.observe(this, {
+        newsViewModel.fetchDataFromApi("london")
+        newsViewModel.observeNews(this, {
             Log.i("TAG", "onCreate: $it")
         })
     }

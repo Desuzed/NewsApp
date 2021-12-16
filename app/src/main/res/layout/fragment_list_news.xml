@@ -1,19 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/padding_main"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/listFragment"
     tools:context=".view.fragments.ListNewsFragment">
 
+    <EditText
+        android:id="@+id/etQuery"
+        android:layout_width="0dp"
+        android:lines="1"
+        android:inputType="text"
+        android:imeOptions="actionSearch"
+        android:hint="@string/type_your_query"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvListArticles"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/padding_main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/etQuery"
+        app:layout_constraintStart_toStartOf="@id/etQuery"
+        app:layout_constraintTop_toBottomOf="@id/etQuery">
 
-        />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvListArticles"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
-</FrameLayout>
+            />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
