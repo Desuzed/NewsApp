@@ -5,10 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.desuzed.newsapp.App
+import com.desuzed.newsapp.R
 import com.desuzed.newsapp.databinding.FragmentListNewsBinding
 import com.desuzed.newsapp.model.Article
 import com.desuzed.newsapp.model.vm.NewsViewModel
@@ -31,7 +33,7 @@ class ListNewsFragment : Fragment(), OnItemClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         fragmentListNewsBinding = FragmentListNewsBinding.inflate(inflater, container, false)
         return fragmentListNewsBinding.root
     }
@@ -55,7 +57,11 @@ class ListNewsFragment : Fragment(), OnItemClickListener {
     }
 
     override fun onClick(article: Article) {
+        val bundle = bundleOf(DetailedContentFragment.ARTICLE to article)
+        navigate(R.id.action_listNewsFragment_to_detailedContentFragment, bundle)
         Log.i("TAG", "onClick: $article ")
     }
+
+
 
 }

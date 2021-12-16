@@ -9,7 +9,25 @@
         android:id="@+id/listNewsFragment"
         android:name="com.desuzed.newsapp.view.fragments.ListNewsFragment"
         android:label="fragment_list_news"
-        tools:layout="@layout/fragment_list_news" />
+        tools:layout="@layout/fragment_list_news" >
+        <action
+            android:id="@+id/action_listNewsFragment_to_detailedContentFragment"
+            app:destination="@id/detailedContentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedContentFragment"
+        android:name="com.desuzed.newsapp.view.fragments.DetailedContentFragment"
+        android:label="fragment_detailed_content"
+        tools:layout="@layout/fragment_detailed_content" >
+        <action
+            android:id="@+id/action_detailedContentFragment_to_galleryFragment"
+            app:destination="@id/galleryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.desuzed.newsapp.view.fragments.GalleryFragment"
+        android:label="fragment_gallery"
+        tools:layout="@layout/fragment_gallery" />
 
 
 </navigation>

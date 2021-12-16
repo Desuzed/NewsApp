@@ -1,8 +1,9 @@
 package com.desuzed.newsapp.model
 
 import com.desuzed.newsapp.data.retrofit.dto.SourceDto
+import java.io.Serializable
 
-class Article(
+data class Article(
     val source: Source,
     val author: String,
     val title: String,
@@ -11,4 +12,4 @@ class Article(
     val urlToImage: String,
     val publishedAt: String,
     val content: String
-)
+) : Serializable
