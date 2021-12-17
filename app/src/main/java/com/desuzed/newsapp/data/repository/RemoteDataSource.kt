@@ -1,7 +1,7 @@
 package com.desuzed.newsapp.data.repository
 
 import com.desuzed.everyweather.data.network.retrofit.NetworkResponse
-import com.desuzed.newsapp.data.NewsService
+import com.desuzed.newsapp.data.retrofit.NewsService
 import com.desuzed.newsapp.data.retrofit.dto.ErrorDto
 import com.desuzed.newsapp.data.retrofit.dto.NewsDto
 

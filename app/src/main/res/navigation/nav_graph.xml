@@ -12,7 +12,12 @@
         tools:layout="@layout/fragment_list_news" >
         <action
             android:id="@+id/action_listNewsFragment_to_detailedContentFragment"
-            app:destination="@id/detailedContentFragment" />
+            app:destination="@id/detailedContentFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
     </fragment>
     <fragment
         android:id="@+id/detailedContentFragment"
@@ -21,7 +26,8 @@
         tools:layout="@layout/fragment_detailed_content" >
         <action
             android:id="@+id/action_detailedContentFragment_to_galleryFragment"
-            app:destination="@id/galleryFragment" />
+            app:destination="@id/galleryFragment"
+            />
     </fragment>
     <fragment
         android:id="@+id/galleryFragment"

@@ -74,6 +74,10 @@ class ListNewsFragment : Fragment(), OnItemClickListener {
     }
 
     private val newsObserver = Observer<News> {
+        if(it.articles.isEmpty()) {
+            uiViewModel.postValue(UiState.NoData())
+            return@Observer
+        }
         articlesAdapter.submitList(it.articles)
         uiViewModel.postValue(UiState.Success())
     }
@@ -92,7 +96,7 @@ class ListNewsFragment : Fragment(), OnItemClickListener {
             }
             is UiState.Error ->{
                 toggleRefresher(false)
-                toggleUi(newsViewModel.showNews()!=null)
+                toggleUi(newsViewModel.showNews()?.articles?.size!! >0)
             }
             is UiState.Loading -> toggleRefresher(true)
             is UiState.NoData -> {
@@ -156,6 +160,11 @@ class ListNewsFragment : Fragment(), OnItemClickListener {
         rvListArticles.adapter = articlesAdapter
         swipeRefresh.setOnRefreshListener {
             val query = newsViewModel.showQuery()
+            if (query==null){
+                toast(ErrorProviderImpl(resources).parseCode(ErrorProvider.EMPTY_QUERY))
+                uiViewModel.postValue(UiState.Error())
+                return@setOnRefreshListener
+            }
             newsViewModel.fetchDataFromApi(query.toString())
             uiViewModel.postValue(UiState.Loading())
         }

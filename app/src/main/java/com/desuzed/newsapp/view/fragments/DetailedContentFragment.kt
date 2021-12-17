@@ -1,19 +1,16 @@
 package com.desuzed.newsapp.view.fragments
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
-import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.desuzed.newsapp.R
 import com.desuzed.newsapp.databinding.FragmentDetailedContentBinding
-import com.desuzed.newsapp.databinding.FragmentListNewsBinding
 import com.desuzed.newsapp.model.Article
 
 
@@ -21,7 +18,10 @@ class DetailedContentFragment : Fragment() {
     private lateinit var binding: FragmentDetailedContentBinding
     private lateinit var ivContent: ImageView
     private lateinit var tvContentTitle: TextView
+    private lateinit var tvAuthor: TextView
     private lateinit var tvContentDescription: TextView
+    private lateinit var tvArticleContent: TextView
+    private lateinit var tvUrlToContent: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,13 +35,15 @@ class DetailedContentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         bind()
         setContent()
-
     }
 
     private fun setContent (){
         val article = arguments?.getSerializable(ARTICLE) as Article
         tvContentTitle.text = article.title
         tvContentDescription.text = article.description
+        tvArticleContent.text = article.content
+        tvUrlToContent.text = article.url
+        tvAuthor.text = article.author
         Glide
             .with(requireContext())
             .load(article.urlToImage)
@@ -57,7 +59,9 @@ class DetailedContentFragment : Fragment() {
         ivContent = binding.ivContent
         tvContentTitle = binding.tvContentTitle
         tvContentDescription = binding.tvContentDescription
-
+        tvArticleContent = binding.tvArticleContent
+        tvUrlToContent = binding.tvUrlToContent
+        tvAuthor = binding.tvAuthor
     }
     companion object {
         const val ARTICLE = "article"

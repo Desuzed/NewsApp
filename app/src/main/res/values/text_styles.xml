@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextViewStyle" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/montserrat_regular_ru</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextViewStyle.TextDescription" >
+        <item name="android:textSize">14sp</item>
+        <item name="android:maxLines">4</item>
+        <item name="android:ellipsize">end</item>
+
+    </style>
+
+    <style name="TextViewStyle.TextRegular" >
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextViewStyle.Author" >
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextViewStyle.Title" >
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+</resources>

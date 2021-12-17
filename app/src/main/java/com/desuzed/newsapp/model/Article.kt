@@ -1,6 +1,5 @@
 package com.desuzed.newsapp.model
 
-import com.desuzed.newsapp.data.retrofit.dto.SourceDto
 import java.io.Serializable
 
 data class Article(

@@ -1,4 +1,4 @@
-package com.desuzed.newsapp.data
+package com.desuzed.newsapp.data.retrofit
 
 import com.desuzed.everyweather.data.network.retrofit.NetworkResponse
 import com.desuzed.everyweather.data.network.retrofit.NetworkResponseAdapterFactory
@@ -10,7 +10,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
-//https://newsapi.org/v2/top-headlines/sources?apiKey=API_KEY
 interface NewsService {
     //todo ключ не добавляется в билд конфиг, разобраться с этим и персоздать ключ
     @GET("everything?apiKey=5eb0bf747eba482791fed6e9a5d78e22")

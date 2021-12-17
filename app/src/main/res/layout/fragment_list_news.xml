@@ -30,8 +30,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="@string/nothing_to_load"
         android:gravity="center"
-        android:visibility="gone"
-        tools:visibility="visible"
+        android:visibility="visible"
+
         />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -42,13 +42,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/etQuery"
         app:layout_constraintStart_toStartOf="@id/etQuery"
-        app:layout_constraintTop_toBottomOf="@id/etQuery">
+        app:layout_constraintTop_toBottomOf="@id/etQuery"
+        >
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvListArticles"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:visibility="gone"
 
             />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

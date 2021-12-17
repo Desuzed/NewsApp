@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_margin="5dp"
-    android:layout_height="150dp"
-    app:cardCornerRadius="8dp"
-    android:backgroundTint="@color/bg_rv_card"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/corner_radius_8"
+    android:backgroundTint="?attr/bgPrimary"
     >
 
 
@@ -16,41 +16,43 @@
         android:padding="@dimen/padding_main"
         >
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/rvNewsImage"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
+            android:layout_height="wrap_content"
+            android:minHeight="250dp"
+            app:shapeAppearanceOverlay="@style/roundedCorners"
+            android:adjustViewBounds="true"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/img" />
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/padding_main"
+            style="@style/TextViewStyle"
             android:ellipsize="end"
             android:maxLines="2"
-            android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/rvNewsImage"
-            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/bg_title"
+            android:padding="4dp"
+            android:textColor="@color/textNight"
+            app:layout_constraintEnd_toEndOf="@id/rvNewsImage"
+            app:layout_constraintStart_toStartOf="@id/rvNewsImage"
+            app:layout_constraintTop_toTopOf="@id/rvNewsImage"
             tools:text="Ttile " />
 
         <TextView
             android:id="@+id/tvDescription"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            style="@style/TextViewStyle.TextDescription"
             android:layout_marginTop="@dimen/padding_main"
-            android:ellipsize="end"
-            android:maxLines="4"
-            app:layout_constraintBottom_toBottomOf="@+id/rvNewsImage"
-            app:layout_constraintEnd_toEndOf="@id/tvTitle"
-            app:layout_constraintStart_toStartOf="@id/tvTitle"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/rvNewsImage"
+            app:layout_constraintStart_toStartOf="@id/rvNewsImage"
+            app:layout_constraintTop_toBottomOf="@id/rvNewsImage"
             tools:text="Description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

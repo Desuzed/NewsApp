@@ -19,6 +19,9 @@ class NewsViewModel(private val repoApp: RepoApp) : ViewModel(), INewsViewModel 
     private val errorMessageDataOwner = ErrorMessageDataOwner()
     private val queryDataOwner = QueryDataOwner()
 
+    init {
+        loadCachedArticles()
+    }
 
     override fun fetchDataFromApi(query: String) =
         viewModelScope.launch {
@@ -26,6 +29,11 @@ class NewsViewModel(private val repoApp: RepoApp) : ViewModel(), INewsViewModel 
             result.first?.let { newsDataOwner.postValue(it) }
             handleError(result.second)
         }
+
+    override fun loadCachedArticles() = viewModelScope.launch {
+        newsDataOwner.postValue(repoApp.loadCachedNews())
+    }
+
 
     override fun observeNews(owner: LifecycleOwner, observer: Observer<News>) {
         newsDataOwner.observe(owner, observer)
@@ -68,9 +76,17 @@ class NewsViewModel(private val repoApp: RepoApp) : ViewModel(), INewsViewModel 
         }
         errorMessageDataOwner.postValue(error.message)
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        repoApp.clearJob()
+    }
+
+
 }
 
 interface INewsViewModel {
+    fun loadCachedArticles(): Job
     fun fetchDataFromApi(query: String): Job
     fun showNews(): News?
     fun showQuery(): String?
