@@ -6,6 +6,7 @@ import com.desuzed.newsapp.data.ErrorProvider.Companion.API_KEY_DISABLED
 import com.desuzed.newsapp.data.ErrorProvider.Companion.API_KEY_EXHAUSTED
 import com.desuzed.newsapp.data.ErrorProvider.Companion.API_KEY_INVALID
 import com.desuzed.newsapp.data.ErrorProvider.Companion.API_KEY_MISSING
+import com.desuzed.newsapp.data.ErrorProvider.Companion.EMPTY_QUERY
 import com.desuzed.newsapp.data.ErrorProvider.Companion.PARAMETER_INVALID
 import com.desuzed.newsapp.data.ErrorProvider.Companion.PARAMETER_MISSING
 import com.desuzed.newsapp.data.ErrorProvider.Companion.RATE_LIMITED
@@ -28,6 +29,7 @@ class ErrorProviderImpl(private val resources: Resources) : ErrorProvider {
             PARAMETER_MISSING -> resources.getString(R.string.parameter_missing)
             SOURCES_TOO_MANY -> resources.getString(R.string.too_many_source)
             SOURCE_DOES_NOT_EXIST -> resources.getString(R.string.source_does_not_exist)
+            EMPTY_QUERY -> resources.getString(R.string.field_is_empty)
             else -> resources.getString(R.string.internal_app_error)
         }
     }
@@ -50,6 +52,7 @@ interface ErrorProvider {
         const val RATE_LIMITED = "rateLimited"
         const val SOURCES_TOO_MANY = "sourcesTooMany"
         const val SOURCE_DOES_NOT_EXIST = "sourceDoesNotExist"
+        const val EMPTY_QUERY = "emptyQuery"
     }
 }
 

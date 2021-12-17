@@ -16,7 +16,8 @@
     <string name="parameter_missing">Required parameters are missing from the request and it cannot be completed</string>
     <string name="too_many_source">You have requested too many sources in a single request. Try splitting the request into 2 smaller requests.</string>
     <string name="source_does_not_exist"> You have requested a source which does not exist.</string>
-
+    <string name="field_is_empty">Query should not be empty</string>
+    <string name="nothing_to_load">Nothing to load</string>
 
 
 </resources>

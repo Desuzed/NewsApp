@@ -1,4 +1,4 @@
-package com.desuzed.newsapp.model.vm
+package com.desuzed.newsapp.model.vm.liveData
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +8,7 @@ class ErrorMessageDataOwner : LiveDataOwner<String> {
     private val errorMessageLiveData = MutableLiveData<String>()
     override fun observe(owner: LifecycleOwner, observer: Observer<String>) {
         errorMessageLiveData.observe(owner, observer)
+        errorMessageLiveData.value = ""
     }
 
     override fun showValue(): String? = errorMessageLiveData.value

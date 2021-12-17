@@ -1,4 +1,4 @@
-package com.desuzed.newsapp.model.vm
+package com.desuzed.newsapp.model.vm.liveData
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData

@@ -6,22 +6,30 @@ import com.desuzed.newsapp.data.retrofit.dto.mappers.ErrorMapper
 import com.desuzed.newsapp.data.retrofit.dto.mappers.NewsMapper
 import com.desuzed.newsapp.model.Error
 import com.desuzed.newsapp.model.News
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class RepoAppImpl (private val localDataSource: LocalDataSource, private val remoteDataSource: RemoteDataSource) : RepoApp {
 
     //TODO нуждается в рефакторинге. сильная связанность
-    override suspend fun fetchNewsFromApi(query: String): Pair<News?, Error?> {
-        return when (val response = remoteDataSource.fetchNews(query)) {
-            is NetworkResponse.Success -> {
-                val pair = Pair(NewsMapper().mapFromEntity(response.body), null)
-                return if (pair.first.articles.isEmpty()) {
-                    Pair(
-                        null,
-                        Error("Nothing found", "", localDataSource.parseCode(ErrorProvider.NO_DATA))
-                    )
-                } else {
-                    pair
-                }
+    override suspend fun fetchNewsFromApi(query: String): Pair<News?, Error?> =
+        withContext(Dispatchers.IO)
+        {
+            when (val response = remoteDataSource.fetchNews(query)) {
+                is NetworkResponse.Success -> {
+                    val pair = Pair(NewsMapper().mapFromEntity(response.body), null)
+                    if (pair.first.articles.isEmpty()) {
+                        Pair(
+                            null,
+                            Error(
+                                "Nothing found",
+                                "",
+                                localDataSource.parseCode(ErrorProvider.NO_DATA)
+                            )
+                        )
+                    } else {
+                        pair
+                    }
             }
             is NetworkResponse.ApiError -> {
                 val pair = Pair(null, ErrorMapper().mapFromEntity(response.body))
